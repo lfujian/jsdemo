@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>createElement</title>
+	</head>
+
+	<body>
+		<h1>createElement</h1>
+		<h3> 创建元素节点。此方法可返回一个 Element 对象。 </h3>
+		<h4> 要与appendChild() 或 insertBefore()方法联合使用，将元素显示在页面中。</h4>
+		<script type="text/javascript">
+			var main = document.body;
+			//创建链接
+			function createa(url, text) {
+				var a = document.createElement("a");
+				a.href = url;
+				a.innerHTML = text;
+				a.style.color = "red";
+				main.appendChild(a);
+			}
+			// 调用函数创建链接
+			createa("http://www.imooc.com/", "慕课网");
+		</script>
+		<br/><br/><br/>
+		<a href="index.html">返回</a>
+	</body>
+
+</html>

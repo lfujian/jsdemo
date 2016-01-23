@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>offsetWidthAndHeight</title>
+	</head>
+
+	<body>
+		<h1>offsetWidthAndHeight</h1>
+		<h3> 获取网页内容高度和宽度(包括滚动条等边线，会随窗口的显示大小改变)。  </h3>
+		<script type="text/javascript">
+			var w= document.documentElement.offsetWidth || document.body.offsetWidth;
+			var h= document.documentElement.offsetHeight || document.body.offsetHeight;
+			document.write("width:" + w + " , height:" + h);
+		</script>
+
+		<br/>
+		<br/>
+		<br/>
+		<a href="index.html">返回</a>
+	</body>
+
+</html>

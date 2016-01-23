@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>js浏览器对象</title>
+		<script type="text/javascript">
+			// 定时器 -- setInterval 
+			function clock() {
+				var time = new Date();
+				document.getElementById("clock").value = time;
+			}
+			var i=setInterval(clock,1000) // 执行的方法名（不带括号），间隔时间
+				// setTimeout
+			var num=0;
+  			function startCount(){
+    			document.getElementById('count').value=num;
+    			num=num+1;
+    			j=setTimeout("startCount()",1000);
+  			}
+  			
+  			function stopCount(){
+     			clearTimeout(j);
+  			}
+			
+			// History
+//			var HL = window.history.length;
+//			document.getElementById("his").value=HL;
+			function back(){
+     			window.history.back();
+  			}
+			
+			// navigator 查询浏览器和操作系统相关信息
+			  function validB(){ 
+    			var u_agent =    navigator.userAgent   ; 
+    			var B_name="不是想用的主流浏览器!"; 
+    			if(u_agent.indexOf("Firefox")>-1){ 
+        			B_name="Firefox"; 
+    			}else if(u_agent.indexOf("Chrome")>-1){ 
+        			B_name="Chrome"; 
+    			}else if(u_agent.indexOf("MSIE")>-1&&u_agent.indexOf("Trident")>-1){ 
+        			B_name="IE(8-10)";  
+    			}
+    			document.getElementById("browser").value = B_name+":"+u_agent;
+//      		document.write("浏览器:"+B_name+"<br>");
+//      		document.write("u_agent:"+u_agent+"<br>"); 
+  			  }
+		</script>
+	</head>
+
+	<body>
+		<h2>定时器</h2>
+		<input type="text" id="clock" size="50" />
+		<input type="button" value="Stop" onclick="clearInterval(i)" /><!-- 取消定时器  -->
+		<form>
+			<input type="text" id="count" />
+			<input type="button" value="Start" onclick="startCount()" />
+			<input type="button" value="Stop" onclick="stopCount()" />
+		</form>
+		<h2>History</h2> 历史记录条数 ：
+		<input type="text" id="his" size="1" />
+		<input type="button" value="back" onclick="back()" />
+		<h2>navigator</h2>
+  		<form>
+     		<input type="button" value="查看浏览器" onclick="validB()"  >
+     		<input type="text" id="browser" size="120" />
+  		</form>
+	</body>
+
+</html>

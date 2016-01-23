@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>replaceChild</title>
+	</head>
+
+	<body>
+		<h1>replaceChild</h1>
+		<h3> 实现子节点(对象)的替换。返回被替换对象的引用。 </h3>
+		<div><b id="oldnode">JavaScript</b>是一个很常用的技术，为网页添加动态效果。</div>
+		<a href="javascript:replaceMessage()"> 将加粗改为斜体</a>
+
+		<script type="text/javascript">
+			function replaceMessage() {
+				// 新建node
+				var newnode = document.createElement("i");
+				var newnodetext = document.createTextNode("JavaScript");
+				newnode.appendChild(newnodetext);
+				// 获取老的
+				var oldnode = document.getElementById("oldnode");
+				// 替换
+				oldnode.parentNode.replaceChild(newnode, oldnode);
+			}
+		</script>
+		
+		<br/><br/><br/>
+		<a href="index.html">返回</a>
+	</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>demo01---表格添加</title>
+		<script type="text/javascript">
+			// 进页面即加载
+			window.onload = function() {
+				Highlight(); // 改变背景颜色
+			}
+			// 添加一行
+			function addOne() {
+				var tbody = document.getElementById('table').lastChild;
+				var tr = document.createElement('tr');
+				var td = document.createElement("td");
+				td.innerHTML = "<input type='text'/>";
+				tr.appendChild(td);
+				td = document.createElement("td");
+				td.innerHTML = "<input type='text'/>";
+				tr.appendChild(td);
+				td = document.createElement("td");
+				td.innerHTML = "<a href='javascript:;' onclick='deleteRow(this)'>删除</a>";
+				tr.appendChild(td);
+				tbody.appendChild(tr);
+				Highlight();
+			}
+			// 删除方法
+			function deleteRow(obj) {
+				// 获得此表
+				var tbody = document.getElementById('table').lastChild;
+				// 获得此行
+				var tr = obj.parentNode.parentNode;
+				// 删除此行
+				tbody.removeChild(tr);
+			}
+			// 鼠标移动变背景颜色
+			function Highlight() {
+				// 获得table的tbody，且只能用lastChild，而不能用firstChild
+				var tbody = document.getElementById('table').lastChild;
+				// 获得表的所有行
+				trs = tbody.getElementsByTagName('tr');
+				for (var i = 1; i < trs.length; i++) {
+					trs[i].onmouseover = function() { // 鼠标经过事件
+						this.style.backgroundColor = "#f2f2f2";
+					}
+					trs[i].onmouseout = function() { // 鼠标移开事件
+						this.style.backgroundColor = "#fff";
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<table border="1" width="50%" id="table">
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>操作</th>
+			</tr>
+
+			<tr>
+				<td>xh001</td>
+				<td>王小明</td>
+				<td><a href="javascript:;" onclick="deleteRow(this)">删除</a></td><!-- this用得好啊 -->
+			</tr>
+
+			<tr>
+				<td>xh002</td>
+				<td>刘小芳</td>
+				<td><a href="javascript:;" onclick="deleteRow(this)">删除</a></td>
+			</tr>
+
+		</table>
+		<input type="button" value="添加一行" onclick="addOne()" />
+
+		<br/>
+		<br/>
+		<br/>
+		<a href="index.html">返回</a>
+	</body>
+
+</html>

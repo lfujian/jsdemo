@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+<!-- <script src="../wilddog.debug.js"></script> -->
+<script src = "https://cdn.wilddog.com/js/client/current/wilddog.js" ></script>
+
+<script>
+function prepare() {
+	
+}
+
+
+function testAuth() {
+	var ref = new Wilddog("https://lfj.wilddogio.com");
+	var tk = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0MzQwMzQwNzksImQiOnsidWlkIjoiLUplOUE3b3AtbUVQdWhyRFBOOVQifSwiZXhwIjoxNDM0MDM0MTM5fQ.SDK4KX-MfzL0VeRR4-rhXncUnd6i6o7G3OKWLdThdCE";
+	ref.auth(tk, function(error, result) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", result.auth);
+		    console.log("666Auth expires at:", new Date(result.expires * 1000));
+		  }
+		});
+}
+
+function testAuthWithCustomToken() {
+	var ref = new Wilddog("https://qatest.wilddogio.com");
+	var tk = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0NDc3NjQyMzEsImQiOnsidWlkIjoic2ltcGxlbG9naW46MTQ0Nzc2NDIwMzEzMTAyOSIsInByb3ZpZGVyIjoicGFzc3dvcmQifX0.k0sqQpmyhJifpbQXv7xXN5FqPwZ2o4qs956hYjKCrXo"
+	ref.auth(tk, function(error, result) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("AuthWithCustomToken---Authenticated successfully with payload:", result.auth);
+		    console.log("AuthWithCustomToken---Auth expires at:", new Date(result.expires * 1000));
+		  }
+		});
+}
+
+function testAuthAnonymously() {
+	var ref = new Wilddog("https://qatest.wilddogio.com");
+	ref.authAnonymously(function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		  }
+		});
+}
+
+function testGetAuth() {
+	var ref = new Wilddog("https://lfj.wilddogio.com");
+	var authData = ref.getAuth();
+	if (authData) {
+	  console.log("Authenticated user :", authData);
+	}
+}
+
+function testOnAuth() {
+	var ref = new Wilddog("https://lfj.wilddogio.com");
+	ref.onAuth(function(authData) {
+		  if (authData) {
+		    console.log("testOnAuth-onAuth Authenticated with uid:", authData.uid);
+		  } else {
+		    console.log("testOnAuth-Client unauthenticated.")
+		  }
+		});
+	
+	
+}
+
+function testOffAuth() {
+	var ref = new Wilddog("https://lfj.wilddogio.com");
+	var onAuthCallback = function(authData) {
+		  if (authData) {
+		    console.log("Authenticated with uid:", authData.uid);
+		  } else {
+		    console.log("Client unauthenticated.")
+		  }
+		};
+		
+		ref.onAuth(onAuthCallback);
+	
+		ref.offAuth(onAuthCallback);
+}
+
+function testUnauth() {
+	var ref = new Wilddog("https://lfj.wilddogio.com");
+	
+	ref.unauth();
+}
+
+
+function testAuthWithOAuthPopup() {
+	var ref = new Wilddog("https://abc.wilddogio.com");
+	ref.authWithOAuthPopup("weixin",function(err,auth){
+	    if(err == null){
+	      console.log("auth success!");
+	    } else {
+	      console.log("auth failed,msg:",err);
+	    }
+	});
+}
+
+function testCreateUser() {
+	var ref = new Wilddog("https://qatest.wilddogio.com");
+	ref.createUser({email:"246573067@qq.com",password:"12345678"},
+	  function(err,data){
+	  if(err!=null){
+	  console.log("auth failed!");
+	    //not success
+	  } else {
+	  console.log("auth success!");
+	    //create user success
+	  }
+	});
+}
+
+function testAuthWithPassword() {
+	var ref = new Wilddog("https://qatest.wilddogio.com");
+	ref.authWithPassword({email:"246573067@qq.com",password:"12345678"},
+	  function(err,data){
+	    if(err == null){
+	      console.log("auth success!data:",data);
+	    } else {
+	      console.log("auth failed,msg:",err);
+	    }
+	  }
+	);
+}
+
+</script>
+
+
+<input type="button" value="testAuth" onclick="testAuth()" />
+
+<input type="button" value="testAuthWithCustomToken" onclick="testAuthWithCustomToken()" />
+
+<input type="button" value="testAuthAnonymously" onclick="testAuthAnonymously()" />
+
+<input type="button" value="testGetAuth" onclick="testGetAuth()" />
+
+<input type="button" value="testOnAuth" onclick="testOnAuth()" />
+
+<input type="button" value="testOffAuth" onclick="testOffAuth()" />
+
+<input type="button" value="testUnauth" onclick="testUnauth()" />
+
+<input type="button" value="testAuthWithOAuthPopup" onclick="testAuthWithOAuthPopup()" />
+
+<input type="button" value="testCreateUser" onclick="testCreateUser()" />
+
+<input type="button" value="testAuthWithPassword" onclick="testAuthWithPassword()" />
+
+</body>
+</html>
